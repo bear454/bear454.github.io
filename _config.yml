@@ -28,6 +28,13 @@ theme: minima
 plugins:
   - jekyll-feed
 
+minima:
+  # Minima date format
+  # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+  date_format: "%Y-%m-%d"
+
+google_analytics: UA-106278876-1
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
