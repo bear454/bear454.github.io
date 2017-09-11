@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+**James Mason: Technical Architect, Public Cloud @ SUSE**
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+James is working hard to make SUSE Linux rock in the public cloud. He's been working on various projects at SUSE since 2010, and has been working with Linux since 2001. His first distro was S.u.S.E Linux 7.1.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+James lives, works, and plays in beautiful Bellingham, WA. His daughter prefers KDE or GNOME over OS X, and his son spends more time thinking about Minecraft than its developers.
