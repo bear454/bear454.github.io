@@ -1,0 +1,16 @@
+---
+layout: post
+title: Using Prototype to emulate :last-child on IE6
+date: '2007-11-15T16:31:00.000-08:00'
+author: James Mason
+tags:
+- css
+- prototype
+- rails
+- html
+modified_time: '2008-03-19T09:02:50.040-07:00'
+blogger_id: tag:blogger.com,1999:blog-1724537071905135068.post-4173077035201313310
+blogger_orig_url: http://bear454.blogspot.com/2007/11/using-prototype-to-emulate-last-child.html
+---
+
+Usually it's easy to find a CSS hack to deal with Internet Explorer's oddities... not so with the <a href="http://www.quirksmode.org/css/firstchild.html">:last-child pseudo element</a>, at least as far as I can tell.  But using the <a href="http://www.prototypejs.org/">Prototype javascript library</a>, I was able to build a suitable replacement in 3 lines of code (it could have been 1 if I didn't care about readability or expandability).<br /><br />Here's my scenario.  I have a list of items, and I'm using CSS to turn them into a simple horizontal menu (see <a href="http://css.maxdesign.com.au/listamatic/horizontal01.htm">here</a> to explain).  To the right of each item, I want a vertical bar (like a |) but properly aligned, and not on the last item.  So, I used the following css, putting a right-hand border on all but the last element:<br /><br /><pre style="background: rgb(255, 255, 204) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">ul.menu {<br /> float: left;<br /> padding: 0;<br /> margin: 0;<br /> list-style: none;<br />}<br /><br />ul.menu li {<br /> float: left;<br /> position: relative;<br /> padding: 0px 5px;<br /> border-right: 1px solid #E00000;<br />}<br /><br /><br />ul.menu li:last-child {<br /> border-right: 0;<br />}</pre><br />...<br /><pre style="background: rgb(255, 255, 204) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">&lt;ul class="menu"&gt;<br /> &lt;li&gt;First Menu Item&lt;/li&gt;<br /> &lt;li&gt;Second&lt;/li&gt;<br /> &lt;li&gt;Etc..&lt;/li&gt;<br />&lt;/ul&gt;</pre><br /><br />The results: perfect in Firefox, not so in IE6: the last item in the list still has a border, because the :last-child pseudo-element isn't supported.<br /><br />So, instead, I'm using the following javascript (this won't work without <a href="http://www.prototypejs.org/">Prototype</a>):<br /><br /><pre style="background: rgb(255, 255, 204) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">document.getElementsByClassName('menu').each(function(menu) {<br /> $($(menu.immediateDescendants()).last()).setStyle({borderRight: '0'});<br />});</pre><br /><br />Bingo!  No border-right on the last menu item, in IE or Firefox.  Yay!

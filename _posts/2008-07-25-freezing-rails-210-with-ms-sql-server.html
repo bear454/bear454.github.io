@@ -1,0 +1,15 @@
+---
+layout: post
+title: Freezing Rails 2.10 with MS SQL Server
+date: '2008-07-25T10:36:00.000-07:00'
+author: James Mason
+tags:
+- rails
+- sqlserver
+- activerecord
+modified_time: '2008-07-25T10:52:12.804-07:00'
+blogger_id: tag:blogger.com,1999:blog-1724537071905135068.post-3399766619505371269
+blogger_orig_url: http://bear454.blogspot.com/2008/07/freezing-rails-210-with-ms-sql-server.html
+---
+
+So I'm starting to catch up with a lot of the deployment improvements in Rails up to 2.1.0; I'm <a href="http://support.tigertech.net/freeze-rails">freezing Rails</a>, <a href="http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies">and any associated gems</a>.  Some of my apps run against <a href="http://www.microsoft.com/sql/">Microsoft SQL Server</a>, so the <a href="http://wiki.rubyonrails.org/rails/pages/HowtoConnectToMicrosoftSQLServer">activerecord-sqlserver-adapter</a> is required.  That's where I ran into trouble; trying to freeze that in... apparently a frozen instance of Rails expects the adapters to be frozen as well!<br /><br />So, here's my recipe for freezing Rails into your app, with support for Microsoft SQL Server:<br /><ol><li>If you've already frozen rails, you'll need to unfreeze it:<br /><span style="font-size:85%;"><span style="font-family: courier new;">rake rails:unfreeze</span></span></li><li>add the gem dependency to your environment.rb:<br /><span style="font-size:85%;">config.gem "activerecord-sqlserver-adapter",<br />  :lib => "active_record/connection_adapters/sqlserver_adapter",<br />  :source => "http://gems.rubyonrails.org"</span></li><li><span style="font-size:100%;">Install your gem(s) if you haven't already:<br /><span style="font-size:85%;"><span style="font-family: courier new;">rake gems:install</span></span></span></li><li><span style="font-size:100%;">Freeze your gem(s):<br /><span style="font-family: courier new;font-size:85%;" >rake gems:unpack</span></span></li><li><span style="font-size:100%;">Refreeze Rails (I use my gems - you could do this from edge instead):<br /><span style="font-size:85%;"><span style="font-family: courier new;">rake rails:freeze:gems</span></span></span></li></ol>Viola!  Your Rails app now includes the Rails version it runs against, and any requried gems, including ActiveRecord's SQL Server Adapter.<br /><br /><span style="font-style: italic;">P.S.  This would be easily adaptable for any external ActiveRecord adapter (Oracle, db2, etc.)</span>
