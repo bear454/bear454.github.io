@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blog, v2.0
+title: Firefox Klar
 ---
 
 **TL;DR: Firefox Klar (a.k.a Focus) is free enough to hit F-Droid**
