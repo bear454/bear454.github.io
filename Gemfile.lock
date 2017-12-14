@@ -93,6 +93,9 @@ GEM
       safe_yaml (~> 1.0)
     jekyll-avatar (0.4.2)
       jekyll (~> 3.0)
+    jekyll-bootstrap-sass (0.1.0)
+      bootstrap-sass (~> 3.3)
+      jekyll (>= 2.5)
     jekyll-coffeescript (1.0.1)
       coffee-script (~> 2.2)
     jekyll-default-layout (0.1.4)
@@ -165,8 +168,8 @@ GEM
       jekyll-seo-tag (~> 2.0)
     jekyll-titles-from-headings (0.4.0)
       jekyll (~> 3.3)
-    jekyll-watch (1.5.0)
-      listen (~> 3.0, < 3.1)
+    jekyll-watch (1.5.1)
+      listen (~> 3.0)
     jemoji (0.8.0)
       activesupport (~> 4.0)
       gemoji (~> 3.0)
@@ -188,7 +191,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    pathutil (0.16.0)
+    pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
     rb-fsevent (0.10.2)
@@ -217,9 +220,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.3.7)
   github-pages
-  jekyll (= 3.5.1)
+  jekyll-bootstrap-sass
   jekyll-feed (~> 0.6)
   minima (~> 2.0)
 

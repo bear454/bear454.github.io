@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="far fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="/">
+            <b>{{ site.title }}</b>
+            &nbsp;
+            <i class="far fa-bullhorn"></i>
+        </a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            {% assign default_paths = site.pages | map: "path" %}
+            {% assign page_paths = site.header_pages | default: default_paths %}
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#"><i>{{ site.description }}</i></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ "/feed.xml" | relative_url }}">RSS</a></li>
+                {% for path in page_paths %}
+                    {% assign node = site.pages | where: "path", path | first %}
+                    {% if node.title %}
+                        {% if (page.url == node.url) %}
+                            <li class="active"><a href="#">{{ page.title | escape }}</a></li>
+                        {% else %}
+                            <li><a href="{{ node.url | relative_url }}">{{ node.title | escape }}</a></li>
+                        {% endif # page.url == node.url %}
+                    {% endif %}
+                {% endfor # page in page_paths %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

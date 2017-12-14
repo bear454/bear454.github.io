@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{{ content }}
+
+<section class="container">
+    <div class="row">
+        {% for article in paginator.posts %}
+            <div class="col-md-8 col-md-offset-2">
+                {% assign content = article.content %}
+                {% include article.html %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+

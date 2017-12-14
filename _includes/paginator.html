@@ -1,0 +1,68 @@
+<ul class="pagination pagination-sm">
+    {% if paginator.previous_page %}
+        <li>
+            <a href="{{ paginator.previous_page_path }}" aria-label="Previous">
+                <span aria-hidden="true">
+                    <i class="far fa-angle-double-left"></i>
+                </span>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">
+                    <i class="far fa-angle-double-left"></i>
+                </span>
+            </a>
+        </li>
+    {% endif %}
+    {% assign min_flex = 5 %}
+    {% assign max_flex = paginator.total_pages | minus: 5 %}
+    {% if paginator.page < min_flex %}
+        <!-- paginator.page < 5 -->
+        {% assign first_page = 1 %}
+        {% assign last_page = first_page | plus: 8 %}
+    {% elsif paginator.page > max_flex %}
+        <!-- paginator.page >= (paginator.total_pages - 4) -->
+        {% assign last_page = paginator.total_pages %}
+        {% assign first_page = paginator.total_pages | minus: 8 %}
+    {% else %}
+        <!-- else -->
+        {% assign first_page = paginator.page | minus: 4 %}
+        {% assign last_page = paginator.page | plus: 4 %}
+    {% endif %}
+    <!-- first_page={{first_page}} last_page={{last_page}} -->
+    {% for pagenum in (first_page..last_page) %}
+        {% if pagenum == paginator.page %}
+            <li class="active">
+                <a href="#">
+                    {{ pagenum }}
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+        {% else %}
+            {% if pagenum == 1 %}
+                <li><a href="/">{{ pagenum }}</a></li>
+            {% else %}
+                <li><a href="/page{{ pagenum }}">{{ pagenum }}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+        <li>
+            <a href="{{ paginator.next_page_path }}" aria-label="Next">
+                <span aria-hidden="true">
+                    <i class="far fa-angle-double-right"></i>
+                </span>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">
+                    <i class="far fa-angle-double-right"></i>
+                </span>
+            </a>
+        </li>
+    {% endif %}
+</ul>
